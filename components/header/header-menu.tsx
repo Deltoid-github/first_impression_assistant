@@ -1,11 +1,12 @@
 "use client";
 import { useState, useRef } from "react";
 import Image from "next/image";
-import Menu from "@/public/icons/menu.svg?url";
+import Menu from "@mui/icons-material/Language";
 import { LangModal } from "@/components/modal/langModal";
 import { LangList } from "@/lang/lang";
 import { useRouter, usePathname } from "next/navigation";
 import generateRandomId from "@/utils/idGenerator";
+
 
 export function MenuIcon() {
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -14,7 +15,7 @@ export function MenuIcon() {
   const path = usePathname();
   const selectRef = useRef<HTMLSelectElement>(null);
 
-  return isMobile ? (
+  return (
     <select
       onChange={(e) => {
         router.push(`${path}?lang=${e.target.value}`);
@@ -28,15 +29,5 @@ export function MenuIcon() {
         </option>
       ))}
     </select>
-  ) : (
-    <div className="relative">
-      <Image
-        onClick={() => setOnMenu(!onMenu)}
-        src={Menu}
-        alt="menu"
-        className="h-6 w-6 md:h-11 md:w-11 cursor-pointer"
-      />
-      {onMenu && <LangModal />}
-    </div>
-  );
+  )
 }

@@ -5,13 +5,17 @@ import { useChat } from "ai/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PuffLoader from "react-spinners/PuffLoader";
 import { coverteReport } from "@/utils/coverte-report";
-import Yonsei from "@/public/icons/yonsei.svg?url";
+import Chosun from "@/public/images/logo.png";
 import Image from "next/image";
 import { CiUser } from "react-icons/ci";
 import Send from "@/public/icons/send.svg?url";
 import generateRandomId from "@/utils/idGenerator";
 import Robot from "@/public/svgs/Robot";
 import { LangContents } from "@/lang/lang";
+import backgroundImage from "@/public/images/bg.jpg"; // Replace with your image path
+import { Backdrop, Typography } from "@mui/material";
+import styled from "@emotion/styled";
+import precautions from "@/public/images/text.png";
 
 // AI와 대화할 수 있는 form
 export const AiForm = () => {
@@ -94,7 +98,7 @@ export const AiForm = () => {
   }, [isLoading]);
   return (
     <div className="flex flex-col w-full h-full pt-4">
-      <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl bg-white mt-2 pt-2 md:mt-3 shadow-lg px-3 xl:px-auto mx-auto">
+      <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl mt-2 pt-2 md:mt-3 shadow-lg px-3 xl:px-auto mx-auto border-4 border-[#baccdb]">
         <div className="w-full h-full pt-2 pb-4 md:pt-4 md:pb-8 flex flex-col max-w-[1200px] mx-auto">
           <div className="flex-1 overflow-hidden px-3">
             <div
@@ -103,9 +107,9 @@ export const AiForm = () => {
               className="flex flex-col gap-4 py-4 overflow-auto h-full"
             >
               {/* 배경 로고 */}
-              <div className="fixed top-1/2 left-1/2 z-1 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                <Image src={Yonsei} alt="yonsei" />
-              </div>
+              {/* <div className="fixed top-1/2 left-1/2 z-1 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                <Image src={Chosun} alt="Chosun" />
+              </div> */}
               {/* 대화 내용 / 기록 */}
               {messages.map((chat) => (
                 <div key={generateRandomId(15)} className={`flex items-start`}>
@@ -196,6 +200,7 @@ export const AiForm = () => {
                     formRef.current?.requestSubmit()
                   }
                 />
+
                 {!isLoading && (
                   <Image
                     src={Send}
@@ -222,9 +227,39 @@ export const AiForm = () => {
           </div>
         </div>
       </div>
-      <div className="z-1 w-full text-xs md:text-xl text-[#777] font-[300] text-center mt-4">
-        ※{LangContents[lang].precautions}
+      <div className="z-1 w-full text-xs md:text-xl text-[#8ebee5] font-[600] text-center mt-4 border-1 flex items-center justify-center">
+        {/* <OutLinedText>※{LangContents[lang].precautions}</OutLinedText> */}
+        <Typography color={"#0472ce"} variant="h5" fontWeight={600}>
+          ※정확한 진단은 내방하셔서 의사의 처방을 받으시길 바랍니다.
+        </Typography>
+        {/* <Image src={precautions} alt="precautions" className="md:h-8 w-auto" /> */}
       </div>
+      {/* </Backdrop> */}
     </div>
   );
 };
+
+const OutLinedText = styled.text`
+  font: 800 40px Arial;
+  -webkit-text-fill-color: #8ebee5;
+  -webkit-text-stroke: 3px;
+  
+`;
+// const OutLinedText = styled.text`
+//   fill: none;
+//   stroke: black;
+//   stroke-width: 0.5px;
+//   stroke-linejoin: round;
+//   animation: 2s pulsate infinite;
+// `;
+
+const OutLinerSvg = styled.svg`
+  width: 100%;
+  height: 20px;
+
+  @keyframes pulsate {
+    50% {
+      stroke-width: 5px;
+    }
+  }
+`;

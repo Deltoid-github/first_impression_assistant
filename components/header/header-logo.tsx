@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "@/public/icons/logo.svg?url";
+import Logo from "@/public/images/logoName.png";
 import { LangContents } from "@/lang/lang";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
@@ -19,14 +19,19 @@ const HeaderLogo = () => {
       className="h-full flex flex-col justify-center grow-0 shrink-0"
     >
       <div className="flex items-center justify-start gap-4">
-        <Image
-          src={Logo}
-          alt="logo"
-          className="w-[132px] h-[23px] md:w-[213px] md:h-[37px]"
-        />
-        <h1 className="text-base md:text-2xl font-[600] xl:font-[500] text-[#767575]">
-          {LangContents[lang].logo}
-        </h1>
+        <Image src={Logo} alt="logo" className="w-[132px] md:w-[213px] " />
+        <span>
+          <h1 className="text-base md:text-2xl font-[600] xl:font-[800] text-[#222021]">
+            {/* {LangContents[lang].logo} */}
+            {"AI 닥터 초진시스템"}
+          </h1>
+        </span>
+        <span>
+          <h1 className="text-base md:text-2xl font-[600] xl:font-[800] text-[#0472cd]">
+            {/* {LangContents[lang].logo} */}
+            {"[ AI Doctor Initial Consultation System ]"}
+          </h1>
+        </span>
       </div>
     </Link>
   );
