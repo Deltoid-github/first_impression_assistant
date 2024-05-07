@@ -77,7 +77,7 @@ export function FirstAppointmentModal() {
     return () => {
       document.body.style.overflow = "visible";
     };
-  }, []);
+  }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);

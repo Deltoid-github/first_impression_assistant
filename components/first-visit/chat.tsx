@@ -3,7 +3,7 @@ import { Message } from "ai";
 import React from "react";
 import { Character } from "./Character";
 import { CiUser } from "react-icons/ci";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 import { Divider, Typography } from "@mui/material";
 import logo from "../../public/images/logo.png";
 import Image from "next/image";

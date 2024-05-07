@@ -48,7 +48,7 @@ export const MailHtml = ({ setShare }: MailHtmlProps) => {
     localStorage.removeItem("report");
     localStorage.setItem("report", inflated);
     router.push("/shared-result");
-  }, []);
+  }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   return (
     <div className="w-full md:w-[1200px]">

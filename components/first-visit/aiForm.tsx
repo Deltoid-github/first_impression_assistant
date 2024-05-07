@@ -67,14 +67,14 @@ export const AiForm = () => {
         createdAt: new Date(),
       },
     ]);
-  }, []);
+  }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   // 대화 내용/기록이 업데이트 될 때마다 textarea의 높이를 조절
   useEffect(() => {
     if (!chatbgRef.current || !isAutoScroll) return;
     const { scrollHeight, clientHeight } = chatbgRef.current;
     chatbgRef.current.scrollTop = scrollHeight - clientHeight;
-  }, [messages]);
+  }, [messages]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   // 대화 내용/기록이 업데이트 될 때마다 스크롤을 내릴지 여부를 결정
   const autoScroll = () => {
@@ -95,7 +95,7 @@ export const AiForm = () => {
       localStorage.setItem("report", JSON.stringify(coverteReport(rawReport)));
       setIsResult(true);
     }
-  }, [isLoading]);
+  }, [isLoading]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   // console.log("AI Form");
   return (

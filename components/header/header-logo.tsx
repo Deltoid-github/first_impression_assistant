@@ -12,7 +12,7 @@ const HeaderLogo = () => {
   useEffect(() => {
     const lang = (param.get("lang") as keyof typeof LangContents) ?? "ko";
     setLang(lang);
-  }, []);
+  }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
   return (
     <Link
       href="/"
