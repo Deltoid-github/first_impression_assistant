@@ -13,10 +13,19 @@ import generateRandomId from "@/utils/idGenerator";
 import Robot from "@/public/svgs/Robot";
 import { LangContents } from "@/lang/lang";
 import backgroundImage from "@/public/images/bg.jpg"; // Replace with your image path
-import { Backdrop, Typography } from "@mui/material";
+import {
+  Backdrop,
+  Icon,
+  IconButton,
+  TextField,
+  TextareaAutosize,
+  Typography,
+} from "@mui/material";
 import styled from "@emotion/styled";
 import precautions from "@/public/images/text.png";
-
+import { Character } from "./Character";
+import { Chat } from "./chat";
+import SendIcon from "@mui/icons-material/Send";
 // AI와 대화할 수 있는 form
 export const AiForm = () => {
   // ai/react 라이브러리에서 제공하는 ai와 대화할 수 있는 hook
@@ -44,15 +53,6 @@ export const AiForm = () => {
     textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
     if (textareaRef.current.scrollHeight > 200)
       textareaRef.current.style.height = "208px";
-  }
-
-  // 대화 내용/기록의 시간을 포맷팅하는 함수
-  function formatTime(date: Date) {
-    let hours: string | number = date.getHours();
-    let minutes: string | number = date.getMinutes();
-    hours = hours < 10 ? "0" + hours : hours;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    return hours + ":" + minutes;
   }
 
   // 최초 렌더링 시 대화 내용/기록에 "어디가 불편해서 방문하신건가요?"를 추가
@@ -96,6 +96,8 @@ export const AiForm = () => {
       setIsResult(true);
     }
   }, [isLoading]);
+
+  // console.log("AI Form");
   return (
     <div className="flex flex-col w-full h-full pt-4">
       <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl mt-2 pt-2 md:mt-3 shadow-lg px-3 xl:px-auto mx-auto border-4 border-[#baccdb]">
@@ -106,52 +108,14 @@ export const AiForm = () => {
               onScroll={() => autoScroll()}
               className="flex flex-col gap-4 py-4 overflow-auto h-full"
             >
-              {/* 배경 로고 */}
-              {/* <div className="fixed top-1/2 left-1/2 z-1 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                <Image src={Chosun} alt="Chosun" />
-              </div> */}
               {/* 대화 내용 / 기록 */}
               {messages.map((chat) => (
-                <div key={generateRandomId(15)} className={`flex items-start`}>
-                  {chat.role === "assistant" && (
-                    <div className="flex items-center justify-center rounded-full bg-[#F2F6FA] w-9 h-9 md:w-[85px] md:h-[85px] z-[1] shadow-md">
-                      <Robot className="w-[22px] h-[17px] md:w-[52px] md:h-[42px]" />
-                    </div>
-                  )}
-                  <div className="w-full">
-                    {chat.role === "assistant" && (
-                      <p className="text-xs md:text-xl ml-5 mb-2">
-                        {LangContents[lang].assistant}
-                      </p>
-                    )}
-                    <div className="flex items-end w-full">
-                      {chat.role === "user" && (
-                        <div className="text-xs md:text-xl font-[500] text-[#C0C0C0] ml-auto">
-                          {chat.createdAt && formatTime(chat.createdAt)}
-                        </div>
-                      )}
-                      <div
-                        className={`rounded-xl md:rounded-3xl px-4 py-3 md:px-7 md:py-4 shadow-lg w-fit max-w-[600px] whitespace-pre-line z-[1] text-xs md:text-xl text-left mx-2 md:mx-5 font-[600] xl:font-[500] ${
-                          chat.role === "user"
-                            ? "bg-[#EEF7FF] text-[#333]"
-                            : "bg-[#00387F] text-white"
-                        }`}
-                      >
-                        {chat.content}
-                      </div>
-                      {chat.role === "assistant" && (
-                        <div className="text-xs md:text-xl font-[500] text-[#C0C0C0]">
-                          {chat.createdAt && formatTime(chat.createdAt)}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  {chat.role === "user" && (
-                    <div className="flex items-center justify-center rounded-full bg-[#D9D9D9] w-9 h-9 md:w-[85px] md:h-[85px] z-[1] shadow-md">
-                      <CiUser className="w-6 h-6 md:w-10 md:h-10" />
-                    </div>
-                  )}
-                </div>
+                <Chat
+                  key={generateRandomId(15)}
+                  role={chat.role}
+                  content={chat.content}
+                  createdAt={chat.createdAt}
+                />
               ))}
             </div>
           </div>
@@ -181,7 +145,7 @@ export const AiForm = () => {
                 <textarea
                   ref={textareaRef}
                   value={input}
-                  className="w-full text-xs md:text-2xl font-[400] rounded-xl shadow-md pl-3 pr-8 py-4 md:pl-7 md:pr-16 md:py-6 outline-none row-auto resize-none"
+                  className="w-full text-xs placeholder-[#8ebee5] md:text-3xl font-[400] shadow-md pl-3 pr-8 py-4 md:pl-7 md:pr-16 md:py-4 outline outline-[#8ebee5] row-auto resize-none"
                   rows={1}
                   onChange={(e) => {
                     if (e.target.value[e.target.value.length - 1] === "\n")
@@ -200,6 +164,20 @@ export const AiForm = () => {
                     formRef.current?.requestSubmit()
                   }
                 />
+                {/* <TextField
+                  id="outlined-basic"
+                  label={LangContents[lang].input}
+                  variant="outlined"
+                  sx={{ width: "100%", bgcolor: "white", borderColor: "#00387F", border: "1px solid #00387F"}}
+                >
+                  <IconButton
+                    aria-label="send"
+                    type="submit"
+                    disabled={isLoading}
+                  >
+                    <SendIcon></SendIcon>
+                  </IconButton>
+                </TextField> */}
 
                 {!isLoading && (
                   <Image
@@ -209,7 +187,7 @@ export const AiForm = () => {
                     onClick={(e: FormEvent) =>
                       handleSubmit(e as FormEvent<HTMLFormElement>)
                     }
-                    className="absolute right-3 md:right-5 bottom-[22px] md:bottom-7 cursor-pointer w-4 h-4 md:w-10 md:h-10"
+                    className="absolute right-3 md:right-5 bottom-[17px] md:bottom-[20px] cursor-pointer w-7 h-7 md:w-10 md:h-10 #0066c4"
                   />
                 )}
                 {/* 로딩중 */}
@@ -228,38 +206,24 @@ export const AiForm = () => {
         </div>
       </div>
       <div className="z-1 w-full text-xs md:text-xl text-[#8ebee5] font-[600] text-center mt-4 border-1 flex items-center justify-center">
-        {/* <OutLinedText>※{LangContents[lang].precautions}</OutLinedText> */}
-        <Typography color={"#0472ce"} variant="h5" fontWeight={600}>
+        <Typography
+          color={"#0472ce"}
+          fontWeight={600}
+          sx={{
+            "@media (min-width:600px)": {
+              fontSize: "1.25rem", // Medium devices (tablets)
+            },
+            "@media (min-width:900px)": {
+              fontSize: "1.5rem", // Large devices (desktops)
+            },
+            "@media (min-width:1200px)": {
+              fontSize: "1.75rem", // Extra large devices (large desktops)
+            },
+          }}
+        >
           ※정확한 진단은 내방하셔서 의사의 처방을 받으시길 바랍니다.
         </Typography>
-        {/* <Image src={precautions} alt="precautions" className="md:h-8 w-auto" /> */}
       </div>
-      {/* </Backdrop> */}
     </div>
   );
 };
-
-const OutLinedText = styled.text`
-  font: 800 40px Arial;
-  -webkit-text-fill-color: #8ebee5;
-  -webkit-text-stroke: 3px;
-  
-`;
-// const OutLinedText = styled.text`
-//   fill: none;
-//   stroke: black;
-//   stroke-width: 0.5px;
-//   stroke-linejoin: round;
-//   animation: 2s pulsate infinite;
-// `;
-
-const OutLinerSvg = styled.svg`
-  width: 100%;
-  height: 20px;
-
-  @keyframes pulsate {
-    50% {
-      stroke-width: 5px;
-    }
-  }
-`;
