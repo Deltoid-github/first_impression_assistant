@@ -2,6 +2,7 @@ import "./globals.css";
 import Provider from "@/components/auth/provider";
 import { Header } from "@/components/header/header";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "Dr. AI",
@@ -31,6 +32,7 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
           {children}
           {modal}
         </Provider>
+        <Analytics></Analytics>
       </body>
     </html>
   );
