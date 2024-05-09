@@ -21,6 +21,7 @@ const EmailText = ({ domain, email }: EmailTextProps) => {
           src={`/icons/domains/${domain}-logo.png`}
           width={32}
           height={32}
+          loading="lazy"
         />
       }
     />

@@ -39,6 +39,7 @@ const AssistantChat = ({ chat }: { chat: any }) => {
         width={100}
         height={100}
         className="z-10 max-h-[50px] w-auto md:max-h-[100px]"
+        loading="lazy"
         alt={""}
       ></Image>
       <Box

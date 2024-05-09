@@ -120,6 +120,7 @@ export function FirstAppointmentModal() {
               src={Close}
               alt="close"
               className="w-3 h-3 md:w-8 md:h-8 text-white cursor-pointer"
+              loading="lazy"
             />
           </div>
         </div>

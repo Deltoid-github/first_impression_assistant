@@ -5,7 +5,13 @@ import Image from "next/image";
 export const Character = () => {
   return (
     <div z-index={20}>
-      <Image src={logo.src} alt={"logo"} width={120} height={120}></Image>
+      <Image
+        src={logo.src}
+        alt={"logo"}
+        width={120}
+        height={120}
+        loading="lazy"
+      ></Image>
     </div>
   );
 };

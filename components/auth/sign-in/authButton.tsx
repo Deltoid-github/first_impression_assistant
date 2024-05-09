@@ -24,6 +24,7 @@ const AuthButton = ({ label, value }: AuthButtonProps) => {
         width={24}
         height={24}
         className="flex-grow-0"
+        loading="lazy"
       />
       <span className="flex-grow pr-6">{label}로 시작하기</span>
     </button>

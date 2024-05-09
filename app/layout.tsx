@@ -27,11 +27,11 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="h-screen">
-        <Provider>
+        {/* <Provider> */}
           <Header />
           {children}
           {modal}
-        </Provider>
+        {/* </Provider> */}
         <Analytics></Analytics>
       </body>
     </html>
