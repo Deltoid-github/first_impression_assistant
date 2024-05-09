@@ -26,8 +26,12 @@ import precautions from "@/public/images/text.png";
 import { Character } from "./Character";
 import { Chat } from "./chat";
 import SendIcon from "@mui/icons-material/Send";
+import PrivacyConsentModal from "./PrivacyConsentModal";
 // AI와 대화할 수 있는 form
 export const AiForm = () => {
+  useEffect(() => {
+    localStorage.removeItem("report");
+  }, []);
   // ai/react 라이브러리에서 제공하는 ai와 대화할 수 있는 hook
   const {
     messages, // 대화 내용/기록
@@ -67,15 +71,16 @@ export const AiForm = () => {
         createdAt: new Date(),
       },
     ]);
-  }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // 대화 내용/기록이 업데이트 될 때마다 textarea의 높이를 조절
   useEffect(() => {
     if (!chatbgRef.current || !isAutoScroll) return;
     const { scrollHeight, clientHeight } = chatbgRef.current;
     chatbgRef.current.scrollTop = scrollHeight - clientHeight;
-  }, [messages]); // eslint-disable-next-line react-hooks/exhaustive-deps
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [messages]);
   // 대화 내용/기록이 업데이트 될 때마다 스크롤을 내릴지 여부를 결정
   const autoScroll = () => {
     if (!chatbgRef.current) return;
@@ -95,11 +100,23 @@ export const AiForm = () => {
       localStorage.setItem("report", JSON.stringify(coverteReport(rawReport)));
       setIsResult(true);
     }
-  }, [isLoading]); // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
 
+  // 개인정보 이용 동의
+  const [open, setOpen] = useState(false);
+
+  const handleAgree = () => {
+    router.push(`/result?lang=${lang ?? "ko"}`);
+  }
   // console.log("AI Form");
   return (
     <div className="flex flex-col w-full h-full pt-4">
+      <PrivacyConsentModal
+        open={open}
+        setOpen={setOpen}
+        handleAgree={handleAgree}
+      ></PrivacyConsentModal>
       <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl mt-2 pt-2 md:mt-3 shadow-lg px-3 xl:px-auto mx-auto border-4 border-[#baccdb]">
         <div className="w-full h-full pt-2 pb-4 md:pt-4 md:pb-8 flex flex-col max-w-[1200px] mx-auto">
           <div className="flex-1 overflow-hidden px-3">
@@ -130,7 +147,7 @@ export const AiForm = () => {
                   {LangContents[lang].refresh}
                 </div>
                 <div
-                  onClick={() => router.push(`/result?lang=${lang ?? "ko"}`)}
+                  onClick={() => setOpen(true)} // 모달창 열기
                   className="bg-[#00387F] rounded-lg md:rounded-xl text-xs font-[400] md:text-2xl cursor-pointer shadow-md py-4 text-white text-center w-full"
                 >
                   {LangContents[lang].viewResult}
@@ -205,6 +222,7 @@ export const AiForm = () => {
           </div>
         </div>
       </div>
+
       <div className="z-1 w-full text-xs md:text-xl text-[#8ebee5] font-[600] text-center mt-4 border-1 flex items-center justify-center">
         <Typography
           color={"#0472ce"}
