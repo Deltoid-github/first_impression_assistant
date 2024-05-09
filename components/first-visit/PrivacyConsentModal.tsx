@@ -5,13 +5,21 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { LangContents } from "@/lang/lang";
+import { Divider, Typography } from "@mui/material";
 
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
   handleAgree: (agreed: boolean) => void;
+  lang: keyof typeof LangContents;
 };
-export default function PrivacyConsentModal({ open, setOpen, handleAgree }: Props) {
+export default function PrivacyConsentModal({
+  open,
+  setOpen,
+  handleAgree,
+  lang,
+}: Props) {
   const [scroll, setScroll] = React.useState<DialogProps["scroll"]>("paper");
 
   const handleClose = () => {
@@ -31,14 +39,17 @@ export default function PrivacyConsentModal({ open, setOpen, handleAgree }: Prop
   return (
     <React.Fragment>
       <Dialog
+        // fullScreen={true}
+        fullWidth={true}
         open={open}
         onClose={handleClose}
         scroll={scroll}
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
+        maxWidth="lg"
       >
         <DialogTitle id="scroll-dialog-title">
-          개인정보 제공 동의 약관
+          {LangContents[lang].privacy[0]}
         </DialogTitle>
         <DialogContent dividers={scroll === "paper"}>
           <DialogContentText
@@ -46,33 +57,90 @@ export default function PrivacyConsentModal({ open, setOpen, handleAgree }: Prop
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            <p>
-              {`안녕하세요, 고객님. 
+            <Typography variant="body1">
+              {LangContents[lang].privacy[1][0]}
+            </Typography>
+            <br></br>
+            <Typography variant="body1">
+              {LangContents[lang].privacy[1][1]}
+            </Typography>
 
-                본 약관은 개인정보보호법에 따라, 고객님의 개인정보 수집 및 활용에 대한 동의를 받기 위해 작성되었습니다. 아래의 사항을 충분히 숙지하시고, 동의 여부를 결정해 주시기 바랍니다. 
+            <Divider sx={{ m: 1 }} />
 
-                1. 개인정보 수집 목적 및 이용 범위 
-                    - 수집 목적: 환자의 문진표 작성 및 PDF 출력
-                    - 이용 범위: 문진표는 환자가 직접 의사에게 전달하며, 이를 위해 환자의 이름, 나이, 성별, 증상 등의 정보를 수집합니다. 
-                2. 수집하는 개인정보 항목 
-                    - 환자의 이름 
-                    - 환자의 나이 
-                    - 환자의 성별 
-                    - 환자의 증상 
-                3. 개인정보 보유 및 이용 기간 
-                    - 환자의 문진표는 PDF 출력 목적에 한해 수집되며, 출력 후에는 개인정보가 저장되지 않습니다. 
-                4. 개인정보의 제3자 제공 
-                    - 수집된 정보는 환자가 직접 의사에게 전달하는 용도로만 사용되며, 제3자에게 제공되지 않습니다. 
-                5. 동의 거부권 및 불이익 고지 
-                    - 귀하는 개인정보 제공에 대해 동의하지 않을 권리가 있으며, 동의하지 않는 경우에는 문진표 작성을 통한 PDF 출력을 진행할 수 없습니다. 
-                
-                본 동의서를 충분히 읽어보시고, 개인정보 제공에 대해 동의하신다면 아래의 동의 버틀을 클릭해 주시기 바랍니다.`}
-            </p>
+            <Typography variant="body1">
+              {LangContents[lang].privacy[2][0]}
+            </Typography>
+            <Typography variant="body2">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;
+              {LangContents[lang].privacy[2][1][0]}
+            </Typography>
+            <Typography variant="body2">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;
+              {LangContents[lang].privacy[2][1][1]}
+            </Typography>
+
+            <Divider sx={{ m: 1 }} />
+
+            <Typography variant="body1">
+              {LangContents[lang].privacy[3][0]}
+            </Typography>
+            <Typography variant="body2">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;
+              {LangContents[lang].privacy[3][1][0]}
+            </Typography>
+            <Typography variant="body2">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;
+              {LangContents[lang].privacy[3][1][1]}
+            </Typography>
+            <Typography variant="body2">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;
+              {LangContents[lang].privacy[3][1][2]}
+            </Typography>
+            <Typography variant="body2">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;
+              {LangContents[lang].privacy[3][1][3]}
+            </Typography>
+
+            <Divider sx={{ m: 1 }} />
+
+            <Typography variant="body1">
+              {LangContents[lang].privacy[4][0]}
+            </Typography>
+            <Typography variant="body2">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;
+              {LangContents[lang].privacy[4][1]}
+            </Typography>
+
+            <Divider sx={{ m: 1 }} />
+
+            <Typography variant="body1">
+              {LangContents[lang].privacy[5][0]}
+            </Typography>
+            <Typography variant="body2">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;
+              {LangContents[lang].privacy[5][1]}
+            </Typography>
+
+            <Divider sx={{ m: 1 }} />
+
+            <Typography variant="body1">
+              {LangContents[lang].privacy[6][0]}
+            </Typography>
+            <Typography variant="body2">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;
+              {LangContents[lang].privacy[6][1]}
+            </Typography>
+
+            <Divider sx={{ m: 1 }} />
+
+            <Typography variant="body1">
+              {LangContents[lang].privacy[7]}
+            </Typography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} variant="outlined" color="warning">
-            동의 안 함
+            {LangContents[lang].agree[1]}
           </Button>
           <Button
             onClick={() => {
@@ -81,7 +149,7 @@ export default function PrivacyConsentModal({ open, setOpen, handleAgree }: Prop
             }}
             variant="outlined"
           >
-            동의
+            {LangContents[lang].agree[0]}
           </Button>
         </DialogActions>
       </Dialog>

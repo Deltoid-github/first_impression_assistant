@@ -116,6 +116,7 @@ export const AiForm = () => {
         open={open}
         setOpen={setOpen}
         handleAgree={handleAgree}
+        lang={lang}
       ></PrivacyConsentModal>
       <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl mt-2 pt-2 md:mt-3 shadow-lg px-3 xl:px-auto mx-auto border-4 border-[#baccdb]">
         <div className="w-full h-full pt-2 pb-4 md:pt-4 md:pb-8 flex flex-col max-w-[1200px] mx-auto">
