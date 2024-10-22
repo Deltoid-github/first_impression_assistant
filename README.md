@@ -1,4 +1,4 @@
-# 🤖 First Impression Assistant
+# 🤖 First Impression Assistant 
 
 ai가 환자의 초진을 하고, 내용을 정리하여 emr형식으로 보여줌.
 
