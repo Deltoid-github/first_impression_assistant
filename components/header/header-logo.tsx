@@ -22,7 +22,7 @@ const HeaderLogo = () => {
         <Image
           src={Logo} // Replace with your image path
           alt="logo"
-          className="w-[132px] md:w-[213px] "
+          className="h-[70px] w-auto"
           loading="lazy"
         />
         <span>
