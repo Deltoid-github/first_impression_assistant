@@ -22,7 +22,7 @@ const HeaderLogo = () => {
         <Image
           src={Logo}
           alt="logo"
-          className="w-[132px] md:w-[213px] "
+          className="h-[70px] w-auto"
           loading="lazy"
         />
         <span>
