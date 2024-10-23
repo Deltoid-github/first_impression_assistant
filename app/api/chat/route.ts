@@ -13,7 +13,7 @@ const openai = new OpenAIApi(apiConfig);
 export async function POST(req: Request) {
   const { messages } = await req.json();
   const response = await openai.createChatCompletion({
-    model: "gpt-4-1106-preview",
+    model: "gpt-4o",
     messages: [...preset, ...messages],
     temperature: 1,
     max_tokens: 1000,

@@ -27,14 +27,7 @@ const HeaderLogo = () => {
         />
         <span>
           <h1 className="text-base md:text-2xl font-[600] xl:font-[800] text-[#222021]">
-            {/* {LangContents[lang].logo} */}
-            {"AI 닥터 초진시스템"}
-          </h1>
-        </span>
-        <span>
-          <h1 className="text-base md:text-2xl font-[600] xl:font-[800] text-[#0472cd]">
-            {/* {LangContents[lang].logo} */}
-            {"[ AI Doctor Initial Consultation System ]"}
+            {LangContents[lang].logo}
           </h1>
         </span>
       </div>

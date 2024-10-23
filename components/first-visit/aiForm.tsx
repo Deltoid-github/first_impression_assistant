@@ -108,7 +108,7 @@ export const AiForm = () => {
 
   const handleAgree = () => {
     router.push(`/result?lang=${lang ?? "ko"}`);
-  }
+  };
   // console.log("AI Form");
   return (
     <div className="flex flex-col w-full h-full pt-4">
@@ -118,7 +118,7 @@ export const AiForm = () => {
         handleAgree={handleAgree}
         lang={lang}
       ></PrivacyConsentModal>
-      <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl mt-2 pt-2 md:mt-3 shadow-lg px-3 xl:px-auto mx-auto border-4 border-[#baccdb]">
+      <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl bg-white mt-2 pt-2 md:mt-3 shadow-lg px-3 xl:px-auto mx-auto">
         <div className="w-full h-full pt-2 pb-4 md:pt-4 md:pb-8 flex flex-col max-w-[1200px] mx-auto">
           <div className="flex-1 overflow-hidden px-3">
             <div
@@ -161,10 +161,12 @@ export const AiForm = () => {
                 ref={formRef}
               >
                 <textarea
+                  className="w-full text-xs md:text-2xl font-[400] rounded-xl shadow-md pl-3 pr-8 py-4 md:pl-7 md:pr-16 md:py-6 outline-none row-auto resize-none"
+                  rows={1}
+                  // style="height: 80px;"
+                  style={{ height: "80px" }}
                   ref={textareaRef}
                   value={input}
-                  className="w-full text-xs placeholder-[#8ebee5] md:text-3xl font-[400] shadow-md pl-3 pr-8 py-4 md:pl-7 md:pr-16 md:py-4 outline outline-[#8ebee5] row-auto resize-none"
-                  rows={1}
                   onChange={(e) => {
                     if (e.target.value[e.target.value.length - 1] === "\n")
                       return;
@@ -181,34 +183,19 @@ export const AiForm = () => {
                     !isLoading &&
                     formRef.current?.requestSubmit()
                   }
+                ></textarea>
+                <Image
+                  alt="send"
+                  loading="eager"
+                  width={40}
+                  height={40}
+                  decoding="async"
+                  className="absolute right-3 md:right-5 bottom-[22px] md:bottom-7 cursor-pointer w-4 h-4 md:w-10 md:h-10"
+                  src={Send}
+                  onClick={(e: FormEvent) =>
+                    handleSubmit(e as FormEvent<HTMLFormElement>)
+                  }
                 />
-                {/* <TextField
-                  id="outlined-basic"
-                  label={LangContents[lang].input}
-                  variant="outlined"
-                  sx={{ width: "100%", bgcolor: "white", borderColor: "#00387F", border: "1px solid #00387F"}}
-                >
-                  <IconButton
-                    aria-label="send"
-                    type="submit"
-                    disabled={isLoading}
-                  >
-                    <SendIcon></SendIcon>
-                  </IconButton>
-                </TextField> */}
-
-                {!isLoading && (
-                  <Image
-                    src={Send}
-                    alt="send"
-                    loading="eager"
-                    onClick={(e: FormEvent) =>
-                      handleSubmit(e as FormEvent<HTMLFormElement>)
-                    }
-                    className="absolute right-3 md:right-5 bottom-[17px] md:bottom-[20px] cursor-pointer w-7 h-7 md:w-10 md:h-10 #0066c4"
-                  />
-                )}
-                {/* 로딩중 */}
                 {isLoading && (
                   <div className="absolute w-8 h-8 right-3 bottom-4 md:right-5 md:bottom-6 md:w-12 md:h-12">
                     <PuffLoader
@@ -224,24 +211,8 @@ export const AiForm = () => {
         </div>
       </div>
 
-      <div className="z-1 w-full text-xs md:text-xl text-[#8ebee5] font-[600] text-center mt-4 border-1 flex items-center justify-center">
-        <Typography
-          color={"#0472ce"}
-          fontWeight={600}
-          sx={{
-            "@media (min-width:600px)": {
-              fontSize: "1.25rem", // Medium devices (tablets)
-            },
-            "@media (min-width:900px)": {
-              fontSize: "1.5rem", // Large devices (desktops)
-            },
-            "@media (min-width:1200px)": {
-              fontSize: "1.75rem", // Extra large devices (large desktops)
-            },
-          }}
-        >
-          ※정확한 진단은 내방하셔서 의사의 처방을 받으시길 바랍니다.
-        </Typography>
+      <div className="z-1 w-full text-xs md:text-xl text-[#777] font-[300] text-center mt-4">
+        ※정확한 진단은 내방하셔서 의사의 처방을 받으시길 바랍니다.
       </div>
     </div>
   );
