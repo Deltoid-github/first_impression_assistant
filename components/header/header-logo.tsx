@@ -20,7 +20,7 @@ const HeaderLogo = () => {
     >
       <div className="flex items-center justify-start gap-4">
         <Image
-          src={Logo}
+          src={Logo} // Replace with your image path
           alt="logo"
           className="w-[132px] md:w-[213px] "
           loading="lazy"
