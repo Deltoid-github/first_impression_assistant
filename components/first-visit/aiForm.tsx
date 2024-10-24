@@ -21,7 +21,7 @@ import {
   TextareaAutosize,
   Typography,
 } from "@mui/material";
-import styled from "@emotion/styled";
+// import styled from "@emotion/styled";
 import precautions from "@/public/images/text.png";
 import { Character } from "./Character";
 import { Chat } from "./chat";
@@ -118,7 +118,7 @@ export const AiForm = () => {
         handleAgree={handleAgree}
         lang={lang}
       ></PrivacyConsentModal>
-      <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl bg-white mt-2 pt-2 md:mt-3 shadow-lg px-3 xl:px-auto mx-auto">
+      <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl bg-transparent mt-2 pt-2 md:mt-3 px-3 xl:px-auto mx-auto">
         <div className="w-full h-full pt-2 pb-4 md:pt-4 md:pb-8 flex flex-col max-w-[1200px] mx-auto">
           <div className="flex-1 overflow-hidden px-3">
             <div
@@ -159,12 +159,10 @@ export const AiForm = () => {
                 className="relative w-full"
                 onSubmit={(e) => !isLoading && handleSubmit(e)}
                 ref={formRef}
+                style={{ display: "flex", alignItems: "center" }}
               >
-                <textarea
-                  className="w-full text-xs md:text-2xl font-[400] rounded-xl shadow-md pl-3 pr-8 py-4 md:pl-7 md:pr-16 md:py-6 outline-none row-auto resize-none"
+                <StyledTextarea
                   rows={1}
-                  // style="height: 80px;"
-                  style={{ height: "80px" }}
                   ref={textareaRef}
                   value={input}
                   onChange={(e) => {
@@ -183,19 +181,9 @@ export const AiForm = () => {
                     !isLoading &&
                     formRef.current?.requestSubmit()
                   }
-                ></textarea>
-                <Image
-                  alt="send"
-                  loading="eager"
-                  width={40}
-                  height={40}
-                  decoding="async"
-                  className="absolute right-3 md:right-5 bottom-[22px] md:bottom-7 cursor-pointer w-4 h-4 md:w-10 md:h-10"
-                  src={Send}
-                  onClick={(e: FormEvent) =>
-                    handleSubmit(e as FormEvent<HTMLFormElement>)
-                  }
-                />
+                ></StyledTextarea>
+                <SendButton handleSubmit={handleSubmit} />
+
                 {isLoading && (
                   <div className="absolute w-8 h-8 right-3 bottom-4 md:right-5 md:bottom-6 md:w-12 md:h-12">
                     <PuffLoader
@@ -217,3 +205,58 @@ export const AiForm = () => {
     </div>
   );
 };
+
+import styled from "styled-components";
+
+const StyledImage = styled(Image)`
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+
+  @media (min-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
+`;
+
+const SendButton = ({
+  handleSubmit,
+}: {
+  handleSubmit: (e: FormEvent) => void;
+}) => (
+  <StyledImage
+    alt="send"
+    loading="eager"
+    width={40}
+    height={40}
+    decoding="async"
+    src={Send}
+    onClick={(e: FormEvent) => handleSubmit(e as FormEvent<HTMLFormElement>)}
+    style={{
+      backgroundColor: "transparent",
+    }}
+  />
+);
+
+export default SendButton;
+
+const StyledTextarea = styled.textarea`
+  width: 100%; /* w-full */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 400; /* font-[400] */
+  border-radius: 1rem; /* rounded-xl */
+  padding-left: 0.75rem; /* pl-3 */
+  padding-right: 2rem; /* pr-8 */
+  padding-top: 1rem; /* py-4 */
+  padding-bottom: 1rem; /* py-4 */
+  outline: none; /* outline-none */
+  resize: none; /* resize-none */
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem; /* md:text-2xl */
+    padding-left: 1.75rem; /* md:pl-7 */
+    padding-right: 1.5rem; /* md:pr-16 */
+    padding-top: 1.5rem; /* md:py-6 */
+    padding-bottom: 1.5rem; /* md:py-6 */
+  }
+`;
