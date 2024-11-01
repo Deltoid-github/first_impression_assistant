@@ -26,7 +26,7 @@ const HeaderLogo = () => {
           loading="lazy"
         /> */}
         <span>
-          <h1 className="text-base md:text-4xl font-[600] xl:font-[800] text-[#222021]">
+          <h1 className="text-base md:text-4xl font-[600] xl:font-[800] text-black">
             {LangContents[lang].logo}
           </h1>
         </span>

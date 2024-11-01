@@ -34,7 +34,7 @@ const AssistantChat = ({ chat }: { chat: any }) => {
   //   console.log("chat");
   return (
     <Box sx={{ display: "flex" }}>
-      <div className="flex items-center box-border justify-center rounded-full bg-[#000000] bg-opacity-20 w-[38px] h-9 md:w-[91.5px] md:h-[85px] z-[1] shadow-md">
+      {/* <div className="flex items-center box-border justify-center rounded-full bg-[#000000] bg-opacity-20 w-[38px] h-9 md:w-[91.5px] md:h-[85px] z-[1] shadow-md">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="52"
@@ -47,13 +47,16 @@ const AssistantChat = ({ chat }: { chat: any }) => {
           <path d="M45.084 34.786a1.246 1.246 0 0 1-1.248-1.244c0-.686.56-1.244 1.248-1.244a4.42 4.42 0 0 0 4.421-4.412V25.9c0-2.433-1.986-4.408-4.421-4.408a1.246 1.246 0 0 1-1.248-1.244c0-.687.56-1.244 1.248-1.244 3.812 0 6.916 3.095 6.916 6.896v1.985c0 3.806-3.104 6.9-6.916 6.9M6.921 35.284C3.233 35.284 0 31.826 0 27.886V25.9c0-3.801 3.104-6.896 6.921-6.896.689 0 1.248.557 1.248 1.244 0 .686-.56 1.244-1.248 1.244-2.44 0-4.426 1.98-4.426 4.408v1.985c0 2.229 1.592 4.288 3.523 4.79a1.246 1.246 0 0 1 2.146.86v.499c0 .687-.56 1.244-1.248 1.244l.005.005M21.716 24.96a2.141 2.141 0 0 0-4.281 0c0 1.184.958 2.135 2.14 2.135 1.183 0 2.141-.956 2.141-2.135M34.575 24.96c0-1.179-.958-2.14-2.145-2.14-1.188 0-2.141.956-2.141 2.14 0 1.184.958 2.135 2.14 2.135a2.141 2.141 0 0 0 2.146-2.135M32.754 33.254H19.25a1.246 1.246 0 0 1-1.247-1.244c0-.687.558-1.244 1.247-1.244h13.503c.689 0 1.247.557 1.247 1.244 0 .686-.558 1.244-1.247 1.244M26.003 8.896c-2.46 0-4.462-1.995-4.462-4.448C21.542 1.995 23.543 0 26.004 0s4.46 1.995 4.46 4.448c0 2.453-2 4.448-4.46 4.448m0-6.408c-1.083 0-1.966.88-1.966 1.96a1.967 1.967 0 0 0 3.932 0c0-1.08-.884-1.96-1.966-1.96"></path>
           <path d="M26.003 13.065a1.246 1.246 0 0 1-1.248-1.244V7.975c0-.686.559-1.244 1.248-1.244.688 0 1.247.558 1.247 1.244v3.846c0 .687-.559 1.244-1.247 1.244"></path>
         </svg>
-      </div>
+      </div> */}
       <div className="w-full">
         <div className="flex items-end w-full">
-          <div className="rounded-xl md:rounded-3xl px-4 py-3 md:px-7 md:py-4 shadow-lg w-fit max-w-[600px] whitespace-pre-line z-[1] text-xs md:text-xl text-left mx-2 md:mx-5 font-[600] xl:font-[500] bg-[#333] text-white">
+          <div
+            className="rounded-xl md:rounded-2xl px-4 py-4 md:px-7 md:py-4 w-fit max-w-[600px] whitespace-pre-line z-[1] text-2xl md:text-3xl text-left  font-[600] xl:font-[500] text-black"
+            style={{ backgroundColor: "rgb(252, 252, 252)" }}
+          >
             {chat.content}
           </div>
-          <div className="text-xs md:text-xl font-[500] text-[#C0C0C0]">
+          <div className="text-xs md:text-xl font-[500] text-black ml-4 mr-auto">
             {chat.createdAt && formatTime(chat.createdAt)}
           </div>
         </div>
@@ -67,15 +70,18 @@ const UserChat = ({ chat }: { chat: any }) => {
     <div className="flex items-start">
       <div className="w-full">
         <div className="flex items-end w-full">
-          <div className="text-xs md:text-xl font-[500] text-[#C0C0C0] ml-auto">
+          <div className="text-xs md:text-xl font-[500] text-black mr-4 ml-auto">
             {chat.createdAt && formatTime(chat.createdAt)}
           </div>
-          <div className="rounded-xl md:rounded-3xl px-4 py-3 md:px-7 md:py-4 shadow-lg w-fit max-w-[600px] whitespace-pre-line z-[1] text-xs md:text-xl text-left mx-2 md:mx-5 font-[600] xl:font-[500] bg-[#EEF7FF] text-[#333]">
+          <div
+            style={{ backgroundColor: "rgb(252, 252, 252)" }}
+            className="rounded-xl md:rounded-2xl px-4 py-4 md:px-7 md:py-4 w-fit max-w-[600px] whitespace-pre-line z-[1] text-2xl md:text-3xl text-left  font-[600] xl:font-[500] text-black"
+          >
             {chat.content}
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center rounded-full bg-[#D9D9D9] w-9 h-9 md:w-[85px] md:h-[85px] z-[1] shadow-md">
+      {/* <div className="flex items-center justify-center rounded-full bg-[#D9D9D9] w-9 h-9 md:w-[85px] md:h-[85px] z-[1] shadow-md">
         <svg
           stroke="currentColor"
           fill="currentColor"
@@ -93,7 +99,7 @@ const UserChat = ({ chat }: { chat: any }) => {
             </g>
           </g>
         </svg>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -118,13 +118,18 @@ export const AiForm = () => {
         handleAgree={handleAgree}
         lang={lang}
       ></PrivacyConsentModal>
-      <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl bg-transparent mt-2 pt-2 md:mt-3 px-3 xl:px-auto mx-auto">
-        <div className="w-full h-full pt-2 pb-4 md:pt-4 md:pb-8 flex flex-col max-w-[1200px] mx-auto">
+      <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl bg-transparent px-3 xl:px-auto mx-auto">
+        <div
+          style={{
+            padding: "0px",
+          }}
+          className="w-full h-full pt-2 md:pt-4 flex flex-col mx-auto"
+        >
           <div className="flex-1 overflow-hidden px-3">
             <div
               ref={chatbgRef}
               onScroll={() => autoScroll()}
-              className="flex flex-col gap-4 py-4 overflow-auto h-full"
+              className="flex flex-col gap-4 overflow-auto h-full"
             >
               {/* 대화 내용 / 기록 */}
               {messages.map((chat) => (
@@ -137,29 +142,49 @@ export const AiForm = () => {
               ))}
             </div>
           </div>
+          <div
+            style={{
+              paddingBottom: "1rem",
+            }}
+            className="z-1 w-full text-xs md:text-xl text-[#777] font-[300] text-center"
+          >
+            ※정확한 진단은 내방하셔서 의사의 처방을 받으시길 바랍니다.
+          </div>
           {/* 입력창 */}
-          <div className="w-full px-1 md:px-10">
+          <div className="w-full">
             {isResult ? (
               <div className="w-full flex items-center flex-row gap-2 md:gap-4">
                 <div
                   onClick={() => window.location.reload()}
-                  className="rounded-lg md:rounded-xl cursor-pointer text-center w-full font-[400] text-xs md:text-2xl shadow-md py-4 bg-[#D9D9D9]"
+                  style={{
+                    backgroundColor: "rgb(252, 252, 252)",
+                    padding: "1rem",
+                  }}
+                  className="rounded-lg md:rounded-xl cursor-pointer text-center w-full font-[400] text-xs md:text-2xl text-black"
                 >
                   {LangContents[lang].refresh}
                 </div>
                 <div
                   onClick={() => setOpen(true)} // 모달창 열기
-                  className="bg-[#00387F] rounded-lg md:rounded-xl text-xs font-[400] md:text-2xl cursor-pointer shadow-md py-4 text-white text-center w-full"
+                  style={{
+                    backgroundColor: "rgb(252, 252, 252)",
+                    padding: "1rem",
+                  }}
+                  className="rounded-lg md:rounded-xl cursor-pointer text-center w-full font-[400] text-xs md:text-2xl text-black"
                 >
                   {LangContents[lang].viewResult}
                 </div>
               </div>
             ) : (
-              <form
+              <StyledForm
                 className="relative w-full"
                 onSubmit={(e) => !isLoading && handleSubmit(e)}
                 ref={formRef}
-                style={{ display: "flex", alignItems: "center" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
               >
                 <StyledTextarea
                   rows={1}
@@ -193,14 +218,10 @@ export const AiForm = () => {
                     />
                   </div>
                 )}
-              </form>
+              </StyledForm>
             )}
           </div>
         </div>
-      </div>
-
-      <div className="z-1 w-full text-xs md:text-xl text-[#777] font-[300] text-center mt-4">
-        ※정확한 진단은 내방하셔서 의사의 처방을 받으시길 바랍니다.
       </div>
     </div>
   );
@@ -242,8 +263,18 @@ export default SendButton;
 
 const StyledTextarea = styled.textarea`
   width: 100%; /* w-full */
+  outline: none; /* outline-none */
+  resize: none; /* resize-none */
   font-size: 0.875rem; /* text-sm */
   font-weight: 400; /* font-[400] */
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem; /* md:text-2xl */
+  }
+`;
+
+const StyledForm = styled.form`
+  width: 100%; /* w-full */
   border-radius: 1rem; /* rounded-xl */
   padding-left: 0.75rem; /* pl-3 */
   padding-right: 2rem; /* pr-8 */
@@ -251,6 +282,9 @@ const StyledTextarea = styled.textarea`
   padding-bottom: 1rem; /* py-4 */
   outline: none; /* outline-none */
   resize: none; /* resize-none */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 400; /* font-[400] */
+  background-color: rgb(252, 252, 252); /* bg-[#FCFCFC] */
 
   @media (min-width: 768px) {
     font-size: 1.5rem; /* md:text-2xl */

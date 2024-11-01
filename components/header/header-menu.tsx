@@ -33,7 +33,7 @@ export function MenuIcon() {
     router.push(`${path}?lang=${e.target.value}`);
     setTimeout(() => window.location.reload(), 100);
   };
-  
+
   return (
     // <select
     //   onChange={(e) => {
@@ -48,10 +48,13 @@ export function MenuIcon() {
     //     </option>
     //   ))}
     // </select>
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ minWidth: 100 }}>
       <FormControl fullWidth>
         <InputLabel id="Language">Language</InputLabel>
         <Select
+          sx={{
+            height: "50px",
+          }}
           labelId="Language"
           label="Language"
           onChange={(e) => handleChange(e)}
