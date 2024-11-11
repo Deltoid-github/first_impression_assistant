@@ -4,6 +4,7 @@ import { Header } from "@/components/header/header";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Dr. AI",
@@ -29,10 +30,12 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
       </head>
       <body className="h-screen">
         {/* <Provider> */}
-          <Header />
-          {children}
-          {modal}
-          <SpeedInsights/>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Header />
+            {children}
+            {modal}
+            <SpeedInsights/>
+          </Suspense>
         {/* </Provider> */}
         <Analytics></Analytics>
       </body>
