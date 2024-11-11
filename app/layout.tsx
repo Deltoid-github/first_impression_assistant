@@ -3,6 +3,7 @@ import Provider from "@/components/auth/provider";
 import { Header } from "@/components/header/header";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
   title: "Dr. AI",
@@ -31,6 +32,7 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
           <Header />
           {children}
           {modal}
+          <SpeedInsights/>
         {/* </Provider> */}
         <Analytics></Analytics>
       </body>
