@@ -31,7 +31,7 @@ export function MenuIcon() {
   const selectRef = useRef<HTMLSelectElement>(null);
 
   const handleChange = (e: any) => {
-    track("language change", { lang: e });
+    track("language change", { lang: e.target.value });
     router.push(`${path}?lang=${e.target.value}`);
     setTimeout(() => window.location.reload(), 100);
   };
