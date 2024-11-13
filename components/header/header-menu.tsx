@@ -7,6 +7,7 @@ import { LangList } from "@/lang/lang";
 import { useRouter, usePathname } from "next/navigation";
 import generateRandomId from "@/utils/idGenerator";
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { track } from "@vercel/analytics";
 
 export function MenuIcon() {
   // const isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -30,6 +31,7 @@ export function MenuIcon() {
   const selectRef = useRef<HTMLSelectElement>(null);
 
   const handleChange = (e: any) => {
+    track("language change", { lang: e });
     router.push(`${path}?lang=${e.target.value}`);
     setTimeout(() => window.location.reload(), 100);
   };
@@ -57,7 +59,10 @@ export function MenuIcon() {
           }}
           labelId="Language"
           label="Language"
-          onChange={(e) => handleChange(e)}
+          onChange={(e) => {
+            
+            handleChange(e);
+          }}
           placeholder="Language"
           value={lang}
         >
