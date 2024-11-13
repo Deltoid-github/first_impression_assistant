@@ -28,6 +28,7 @@ import { Chat } from "./chat";
 import SendIcon from "@mui/icons-material/Send";
 import PrivacyConsentModal from "./PrivacyConsentModal";
 import { track } from "@vercel/analytics";
+import { Header } from "../header/header";
 // AI와 대화할 수 있는 form
 export const AiForm = () => {
   useEffect(() => {
@@ -112,122 +113,125 @@ export const AiForm = () => {
   };
   // console.log("AI Form");
   return (
-    <div className="flex flex-col w-full h-full pt-4">
-      <PrivacyConsentModal
-        open={open}
-        setOpen={setOpen}
-        handleAgree={handleAgree}
-        lang={lang}
-      ></PrivacyConsentModal>
-      <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl bg-transparent px-3 xl:px-auto mx-auto">
-        <div
-          style={{
-            padding: "0px",
-          }}
-          className="w-full h-full pt-2 md:pt-4 flex flex-col mx-auto"
-        >
-          <div className="flex-1 overflow-hidden px-3">
-            <div
-              ref={chatbgRef}
-              onScroll={() => autoScroll()}
-              className="flex flex-col gap-4 overflow-auto h-full"
-            >
-              {/* 대화 내용 / 기록 */}
-              {messages.map((chat) => (
-                <Chat
-                  key={generateRandomId(15)}
-                  role={chat.role}
-                  content={chat.content}
-                  createdAt={chat.createdAt}
-                />
-              ))}
-            </div>
-          </div>
+    <>
+      <Header />
+      <div className="flex flex-col w-full h-full pt-4">
+        <PrivacyConsentModal
+          open={open}
+          setOpen={setOpen}
+          handleAgree={handleAgree}
+          lang={lang}
+        ></PrivacyConsentModal>
+        <div className="max-w-[1400px] flex-1 overflow-hidden w-full rounded-xl md:rounded-3xl bg-transparent px-3 xl:px-auto mx-auto">
           <div
             style={{
-              paddingBottom: "1rem",
+              padding: "0px",
             }}
-            className="z-1 w-full text-xs md:text-xl text-[#777] font-[300] text-center"
+            className="w-full h-full pt-2 md:pt-4 flex flex-col mx-auto"
           >
-            ※정확한 진단은 내방하셔서 의사의 처방을 받으시길 바랍니다.
-          </div>
-          {/* 입력창 */}
-          <div className="w-full">
-            {isResult ? (
-              <div className="w-full flex items-center flex-row gap-2 md:gap-4">
-                <div
-                  onClick={() => window.location.reload()}
-                  style={{
-                    backgroundColor: "rgb(252, 252, 252)",
-                    padding: "1rem",
-                  }}
-                  className="rounded-lg md:rounded-xl cursor-pointer text-center w-full font-[400] text-xs md:text-2xl text-black"
-                >
-                  {LangContents[lang].refresh}
-                </div>
-                <div
-                  onClick={() => {
-                    track("Finish Chat");
-                    setOpen(true);
-                  }} // 모달창 열기
-                  style={{
-                    backgroundColor: "rgb(252, 252, 252)",
-                    padding: "1rem",
-                  }}
-                  className="rounded-lg md:rounded-xl cursor-pointer text-center w-full font-[400] text-xs md:text-2xl text-black"
-                >
-                  {LangContents[lang].viewResult}
-                </div>
-              </div>
-            ) : (
-              <StyledForm
-                className="relative w-full"
-                onSubmit={(e) => !isLoading && handleSubmit(e)}
-                ref={formRef}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
+            <div className="flex-1 overflow-hidden px-3">
+              <div
+                ref={chatbgRef}
+                onScroll={() => autoScroll()}
+                className="flex flex-col gap-4 overflow-auto h-full"
               >
-                <StyledTextarea
-                  rows={1}
-                  ref={textareaRef}
-                  value={input}
-                  onChange={(e) => {
-                    if (e.target.value[e.target.value.length - 1] === "\n")
-                      return;
-                    handleInputChange(e);
-                    resizeTextarea();
-                  }}
-                  placeholder={
-                    isLoading
-                      ? LangContents[lang].genMedical
-                      : LangContents[lang].input
-                  }
-                  onKeyDown={(e) =>
-                    e.key === "Enter" &&
-                    !isLoading &&
-                    formRef.current?.requestSubmit()
-                  }
-                ></StyledTextarea>
-                <SendButton handleSubmit={handleSubmit} />
-
-                {isLoading && (
-                  <div className="absolute w-8 h-8 right-3 bottom-4 md:right-5 md:bottom-6 md:w-12 md:h-12">
-                    <PuffLoader
-                      loading={isLoading}
-                      size="100%"
-                      color="#9F9F9F"
-                    />
+                {/* 대화 내용 / 기록 */}
+                {messages.map((chat) => (
+                  <Chat
+                    key={generateRandomId(15)}
+                    role={chat.role}
+                    content={chat.content}
+                    createdAt={chat.createdAt}
+                  />
+                ))}
+              </div>
+            </div>
+            <div
+              style={{
+                paddingBottom: "1rem",
+              }}
+              className="z-1 w-full text-xs md:text-xl text-[#777] font-[300] text-center"
+            >
+              ※정확한 진단은 내방하셔서 의사의 처방을 받으시길 바랍니다.
+            </div>
+            {/* 입력창 */}
+            <div className="w-full">
+              {isResult ? (
+                <div className="w-full flex items-center flex-row gap-2 md:gap-4">
+                  <div
+                    onClick={() => window.location.reload()}
+                    style={{
+                      backgroundColor: "rgb(252, 252, 252)",
+                      padding: "1rem",
+                    }}
+                    className="rounded-lg md:rounded-xl cursor-pointer text-center w-full font-[400] text-xs md:text-2xl text-black"
+                  >
+                    {LangContents[lang].refresh}
                   </div>
-                )}
-              </StyledForm>
-            )}
+                  <div
+                    onClick={() => {
+                      track("Finish Chat");
+                      setOpen(true);
+                    }} // 모달창 열기
+                    style={{
+                      backgroundColor: "rgb(252, 252, 252)",
+                      padding: "1rem",
+                    }}
+                    className="rounded-lg md:rounded-xl cursor-pointer text-center w-full font-[400] text-xs md:text-2xl text-black"
+                  >
+                    {LangContents[lang].viewResult}
+                  </div>
+                </div>
+              ) : (
+                <StyledForm
+                  className="relative w-full"
+                  onSubmit={(e) => !isLoading && handleSubmit(e)}
+                  ref={formRef}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <StyledTextarea
+                    rows={1}
+                    ref={textareaRef}
+                    value={input}
+                    onChange={(e) => {
+                      if (e.target.value[e.target.value.length - 1] === "\n")
+                        return;
+                      handleInputChange(e);
+                      resizeTextarea();
+                    }}
+                    placeholder={
+                      isLoading
+                        ? LangContents[lang].genMedical
+                        : LangContents[lang].input
+                    }
+                    onKeyDown={(e) =>
+                      e.key === "Enter" &&
+                      !isLoading &&
+                      formRef.current?.requestSubmit()
+                    }
+                  ></StyledTextarea>
+                  <SendButton handleSubmit={handleSubmit} />
+
+                  {isLoading && (
+                    <div className="absolute w-8 h-8 right-3 bottom-4 md:right-5 md:bottom-6 md:w-12 md:h-12">
+                      <PuffLoader
+                        loading={isLoading}
+                        size="100%"
+                        color="#9F9F9F"
+                      />
+                    </div>
+                  )}
+                </StyledForm>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

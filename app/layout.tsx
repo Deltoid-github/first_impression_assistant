@@ -1,6 +1,4 @@
 import "./globals.css";
-import Provider from "@/components/auth/provider";
-import { Header } from "@/components/header/header";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -31,7 +29,6 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
       <body className="h-screen">
         {/* <Provider> */}
           <Suspense fallback={<div>Loading...</div>}>
-            <Header />
             {children}
             {modal}
             <SpeedInsights/>
