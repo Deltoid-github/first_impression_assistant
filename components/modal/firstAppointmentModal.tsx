@@ -13,7 +13,7 @@ import Image from "next/image";
 import { LangContents } from "@/lang/lang";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { track } from "@vercel/analytics/*";
+import { track } from "@vercel/analytics";
 
 export function FirstAppointmentModal() {
   const overlay = useRef<HTMLDivElement>(null);
