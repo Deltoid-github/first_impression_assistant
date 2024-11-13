@@ -27,6 +27,7 @@ import { Character } from "./Character";
 import { Chat } from "./chat";
 import SendIcon from "@mui/icons-material/Send";
 import PrivacyConsentModal from "./PrivacyConsentModal";
+import { track } from "@vercel/analytics";
 // AI와 대화할 수 있는 form
 export const AiForm = () => {
   useEffect(() => {
@@ -148,7 +149,9 @@ export const AiForm = () => {
                   {LangContents[lang].refresh}
                 </div>
                 <div
-                  onClick={() => setOpen(true)} // 모달창 열기
+                  onClick={() => {
+                    track("Finish Chat");
+                    setOpen(true)}} // 모달창 열기
                   className="bg-[#00387F] rounded-lg md:rounded-xl text-xs font-[400] md:text-2xl cursor-pointer shadow-md py-4 text-white text-center w-full"
                 >
                   {LangContents[lang].viewResult}
