@@ -13,6 +13,7 @@ import Image from "next/image";
 import { LangContents } from "@/lang/lang";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { track } from "@vercel/analytics/*";
 
 export function FirstAppointmentModal() {
   const overlay = useRef<HTMLDivElement>(null);
@@ -45,6 +46,7 @@ export function FirstAppointmentModal() {
   };
 
   const getPdf = () => {
+    track("Pdf download");
     const input = document.getElementById("report"); // 변환하고자 하는 컴포넌트의 ID
     if (!input) return;
     html2canvas(input, { scale: 2 }).then((canvas) => {
