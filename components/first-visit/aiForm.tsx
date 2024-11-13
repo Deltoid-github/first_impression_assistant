@@ -275,7 +275,7 @@ const StyledTextarea = styled.textarea`
   resize: none; /* resize-none */
   font-size: 0.875rem; /* text-sm */
   font-weight: 400; /* font-[400] */
-
+  background-color: transparent; /* bg-transparent */
   @media (min-width: 768px) {
     font-size: 1.5rem; /* md:text-2xl */
   }
