@@ -7,6 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { LangContents } from "@/lang/lang";
 import { Divider, Typography } from "@mui/material";
+import { track } from "@vercel/analytics";
 
 type Props = {
   open: boolean;
@@ -144,6 +145,7 @@ export default function PrivacyConsentModal({
           </Button>
           <Button
             onClick={() => {
+              track("Privacy consent", { agreed: true });
               handleAgree(true);
               handleClose();
             }}

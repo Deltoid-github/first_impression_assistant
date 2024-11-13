@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { LangList } from "@/lang/lang";
 import generateRandomId from "@/utils/idGenerator";
+import { track } from "@vercel/analytics";
 
 export function LangModal() {
   const router = useRouter();
@@ -20,6 +21,7 @@ export function LangModal() {
             key={generateRandomId(15)}
             className="cursor-pointer md:text-xl px-3 py-2 rounded-xl border-[#B2C7DA] border-[1px] bg-white text-center"
             onClick={() => {
+              track("language change", { lang: lang.value });
               router.push(`${path}?lang=${lang.value}`);
               setTimeout(() => window.location.reload(), 100);
             }}
