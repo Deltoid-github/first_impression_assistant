@@ -170,7 +170,7 @@ export const AiForm = () => {
                   </div>
                   <div
                     onClick={() => {
-                      track("Finish Chat");
+                      track("Finish Chat", {lang: lang});
                       setOpen(true);
                     }} // 모달창 열기
                     style={{
