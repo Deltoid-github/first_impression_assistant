@@ -153,7 +153,7 @@ export const AiForm = () => {
                   </div>
                   <div
                     onClick={() => {
-                      track("Finish Chat");
+                      track("Finish Chat", {lang: lang});
                       setOpen(true);
                     }} // 모달창 열기
                     className="bg-[#00387F] rounded-lg md:rounded-xl text-xs font-[400] md:text-2xl cursor-pointer shadow-md py-4 text-white text-center w-full"
