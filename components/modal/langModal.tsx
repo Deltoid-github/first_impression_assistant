@@ -3,7 +3,6 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { LangList } from "@/lang/lang";
 import generateRandomId from "@/utils/idGenerator";
-import { track } from "@vercel/analytics";
 
 export function LangModal() {
   const router = useRouter();

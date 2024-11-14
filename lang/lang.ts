@@ -8,11 +8,11 @@ export const LangContents = {
     result: "#결과",
     genMedical: "문진을 생성중입니다. 잠시 기다려주세요.",
     input: "문진에 대한 답변을 입력해주세요.",
-    firstQuestion: "어디가 불편해서 방문하신건가요?",
+    firstQuestion: "어디가 불편해서 방문하셨나요?",
     report: "초진 보고서",
     share: "공유",
     warning:
-      "조선대병원의 AI 닥터 초진시스템이 환자의 답변을 토대로 추론한 초진보고서입니다. 정확한 진단은 반드시 전문의의 처방을 따르시기 바랍니다.",
+      "AI 닥터 초진시스템이 환자의 답변을 토대로 추론한 초진보고서입니다. 정확한 진단은 반드시 전문의의 처방을 따르시기 바랍니다.",
     privacy: [
       "개인정보 제공 동의",
       [
@@ -55,7 +55,7 @@ export const LangContents = {
     result: "#النتائج",
     genMedical: "يتم إنشاء استبيان التشخيص. يرجى الانتظار.",
     input: "يرجى إدخال إجاباتك على الاستبيان.",
-    firstQuestion: "ما الذي أتى بك إلى هنا؟",
+    firstQuestion: "ما هي مشكلتك الصحية التي جعلتك تأتي إلى هنا؟",
     report: "تقرير التشخيص",
     share: "مشاركة",
     warning:
@@ -102,7 +102,7 @@ export const LangContents = {
     result: "#Results",
     genMedical: "Generating a medical questionnaire. Please wait.",
     input: "Please enter your answers to the questionnaire.",
-    firstQuestion: "What brought you here today?",
+    firstQuestion: "What health issue brought you here today?",
     report: "Initial Diagnosis Report",
     share: "Share",
     warning:
@@ -154,7 +154,7 @@ export const LangContents = {
     result: "#Результаты",
     genMedical: "Создаётся медицинская анкета. Подождите немного.",
     input: "Пожалуйста, введите свои ответы на анкету.",
-    firstQuestion: "Почему вы пришли сегодня?",
+    firstQuestion: "Какая проблема со здоровьем привела вас сюда сегодня?",
     report: "Отчет о предварительном диагнозе",
     share: "Поделиться",
     warning:
@@ -206,7 +206,7 @@ export const LangContents = {
     result: "#ผล",
     genMedical: "กำลังสร้างแบบสอบถามการแพทย์ โปรดรอซักครู่",
     input: "กรุณาใส่คำตอบของคุณในแบบสอบถาม",
-    firstQuestion: "อะไรที่ทำให้คุณมาที่นี่?",
+    firstQuestion: "ปัญหาสุขภาพอะไรที่ทำให้คุณมาที่นี่ในวันนี้?",
     report: "รายงานการวินิจฉัยเบื้องต้น",
     share: "แบ่งปัน",
     warning:
@@ -253,7 +253,7 @@ export const LangContents = {
     result: "#Kết quả",
     genMedical: "Đang tạo bảng câu hỏi y tế. Vui lòng đợi một chút.",
     input: "Vui lòng nhập câu trả lời của bạn vào bảng câu hỏi.",
-    firstQuestion: "Điều gì khiến bạn đến đây hôm nay?",
+    firstQuestion: "Vấn đề sức khỏe nào đã khiến bạn đến đây hôm nay?",
     report: "Báo cáo chẩn đoán ban đầu",
     share: "Chia sẻ",
     warning:
@@ -306,7 +306,8 @@ export const LangContents = {
     result: "#Үр дүн",
     genMedical: "Эмнэлгийн асуулгыг үүсгэж байна. Түр хүлээнэ үү.",
     input: "Асуулгад хариултаа оруулна уу.",
-    firstQuestion: "Ямар шалтгаанаар та өнөөдөр ирсэн бэ?",
+    firstQuestion:
+      "Эрүүл мэндийн ямар асуудал таныг өнөөдөр энд ирэхэд хүргэсэн бэ?",
     report: "Анхан шатны үзлэгийн тайлан",
     share: "Хуваалцах",
     warning:
@@ -359,7 +360,7 @@ export const LangContents = {
     result: "#结果",
     genMedical: "正在生成医疗问卷，请稍等。",
     input: "请输入您对问卷的答案。",
-    firstQuestion: "是什么让您今天来到这里？",
+    firstQuestion: "是什么健康问题让您今天来到这里？",
     report: "初步诊断报告",
     share: "分享",
     warning:
@@ -407,7 +408,7 @@ export const LangContents = {
     result: "#結果",
     genMedical: "正在生成醫療問卷，請稍等。",
     input: "請輸入您對問卷的答案。",
-    firstQuestion: "是什麼讓您今天來到這裡？",
+    firstQuestion: "是什麼健康問題讓您今天來到這裡？",
     report: "初步診斷報告",
     share: "分享",
     warning:
@@ -445,6 +446,53 @@ export const LangContents = {
     ],
     agree: ["同意", "拒絕"],
   },
+  "ja": {
+    precautions: "正確な診断は、ご来院いただき医師の処方を受けてください。",
+    logo: "AIドクター初診システム",
+    assistant: "",
+    refresh: "リフレッシュ",
+    viewResult: "結果を見る",
+    result: "#結果",
+    genMedical: "問診を生成しています。しばらくお待ちください。",
+    input: "問診に対する回答を入力してください。",
+    firstQuestion: "どこが不調で来院されましたか？",
+    report: "初診報告書",
+    share: "共有",
+    warning:
+      "AIドクター初診システムが患者の回答に基づいて推論した初診報告書です。正確な診断は必ず専門医の処方に従ってください。",
+    privacy: [
+      "個人情報提供同意",
+      [
+        "こんにちは、お客様。",
+        "本約款は、個人情報保護法に基づき、お客様の個人情報収集および活用について同意を得るために作成されました。以下の事項を十分にご確認のうえ、同意の可否をご判断ください。",
+      ],
+      [
+        "1. 個人情報収集の目的および利用範囲",
+        [
+          "収集目的: 患者の問診票作成およびPDF出力",
+          "利用範囲: 問診票は患者が直接医師に提供するものであり、そのために患者の氏名、年齢、性別、症状などの情報を収集します。",
+        ],
+      ],
+      [
+        "2. 収集する個人情報の項目",
+        ["患者の氏名", "患者の年齢", "患者の性別", "患者の症状"],
+      ],
+      [
+        "3. 個人情報の保有および利用期間",
+        "患者の問診票はPDF出力の目的に限り収集され、出力後は個人情報は保存されません。",
+      ],
+      [
+        "4. 個人情報の第三者提供",
+        "収集された情報は患者が直接医師に提供する用途にのみ使用され、第三者に提供されることはありません。",
+      ],
+      [
+        "5. 同意拒否権および不利益告知",
+        "お客様は個人情報の提供に同意しない権利があり、同意しない場合は問診票の作成およびPDF出力を行うことができません。",
+      ],
+      "本同意書を十分にお読みいただき、個人情報提供に同意される場合は、以下の同意ボタンをクリックしてください。",
+    ],
+    agree: ["同意", "拒否"],
+  },
 };
 
 export const LangList = [
@@ -457,4 +505,5 @@ export const LangList = [
   { value: "mn", label: "Монгол" },
   { value: "zh-chs", label: "简体中文" },
   { value: "zh-cht", label: "繁體中文" },
+  { value: "ja", label: "日本語" },
 ];
