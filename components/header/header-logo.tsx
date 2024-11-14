@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "@/public/images/logoName.png";
+import Logo from "@/public/images/metahealthlab/mylogo.png";
 import { LangContents } from "@/lang/lang";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
@@ -19,12 +19,12 @@ const HeaderLogo = () => {
       className="h-full flex flex-col justify-center grow-0 shrink-0"
     >
       <div className="flex items-center justify-start gap-4">
-        {/* <Image
+        <Image
           src={Logo}
           alt="logo"
-          className="h-[70px] w-auto"
+          className="h-[100px] w-auto"
           loading="lazy"
-        /> */}
+        />
         <span>
           <h1 className="text-base md:text-4xl font-[600] xl:font-[800] text-black">
             {LangContents[lang].logo}
